@@ -1,4 +1,4 @@
-const { Post, User, Comment } = require('../models/index.js');
+const { Post, User, Comment } = require('../models/user.model.js');
 
 exports.getPosts = async (req, res) => {
     try {

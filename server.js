@@ -12,7 +12,7 @@ async function launch() {
 
         await database.authenticate();
         console.log("Connected to database");
-        server.listen(3000);
+        server.listen(3001);
     } catch (e) {
         console.error("Connection to database failed");
     }
