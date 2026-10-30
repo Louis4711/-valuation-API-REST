@@ -1,3 +1,9 @@
+# Pseudo -> Prenom 
+
+kwakmac / Kwakature -> Arthur
+Louis4711 -> LouisR
+Killvdh -> Killian 
+
 # Entre nous
 
 Mini réseau social en **JavaScript**, avec React (Vite) et une API Node.js / Express.
