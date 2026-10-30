@@ -4,6 +4,10 @@
 ### Louis4711 -> LouisR
 ### Killvdh -> Killian 
 
+# config 
+
+Etape : npm install -> configurer avec le .env la base de donnée mySQL -> lancer le serveur 
+
 # Entre nous
 
 Mini réseau social en **JavaScript**, avec React (Vite) et une API Node.js / Express.
