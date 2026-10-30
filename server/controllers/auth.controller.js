@@ -2,7 +2,7 @@ const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const crypto = require('node:crypto');
 const { fn, col, where } = require('sequelize');
-const { User } = require('./../models/index.js');
+const { User } = require('./../models/user.model.js');
 const { revokedTokens } = require('./../middlewares/auth.middleware.js');
 require('dotenv').config();
 
