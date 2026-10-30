@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 64eedc6c9463598e4b556b55c2b7e3114873f4df
+node_modules/
 client/dist/
 server/data/
 *.log
