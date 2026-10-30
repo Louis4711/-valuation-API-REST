@@ -1,4 +1,10 @@
-const { Post, User, Comment } = require('../models/user.model.js');
+const Post = require('../models/post.model.js');
+const User = require('../models/user.model.js');
+
+Post.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'author'
+});
 
 exports.getPosts = async (req, res) => {
     try {
@@ -9,32 +15,24 @@ exports.getPosts = async (req, res) => {
                     model: User,
                     as: 'author',
                     attributes: ['id', 'username']
-                },
-                {
-                    model: Comment,
-                    as: 'comments',
-                    attributes: [
-                        'id',
-                        'postId',
-                        'userId',
-                        'content',
-                        'createdAt'
-                    ],
-                    separate: true,
-                    order: [['createdAt', 'ASC']],
-                    include: [
-                        {
-                            model: User,
-                            as: 'author',
-                            attributes: ['id', 'username']
-                        }
-                    ]
                 }
             ],
             order: [['createdAt', 'DESC']]
         });
 
-        return res.status(200).json(posts);
+        const result = posts.map((post) => ({
+            id: String(post.id),
+            userId: String(post.userId),
+            content: post.content,
+            createdAt: post.createdAt,
+            author: {
+                id: String(post.author.id),
+                username: post.author.username
+            },
+            comments: []
+        }));
+
+        return res.status(200).json(result);
     } catch (error) {
         console.error('Erreur de lecture des publications :', error);
 
@@ -88,12 +86,12 @@ exports.createPost = async (req, res) => {
         });
 
         return res.status(201).json({
-            id: newPost.id,
-            userId: newPost.userId,
+            id: String(newPost.id),
+            userId: String(newPost.userId),
             content: newPost.content,
             createdAt: newPost.createdAt,
             author: {
-                id: newPost.author.id,
+                id: String(newPost.author.id),
                 username: newPost.author.username
             },
             comments: []

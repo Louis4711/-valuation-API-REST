@@ -1,12 +1,21 @@
-const database = require('./../config/database.js');
-//const {associate} = require('./../config/association.js')
-const User = require('./../models/user.model.js');
-//const Products = require('./../model/product.model.js');
+const database = require('../config/database.js');
 
+require('../models/user.model.js');
+require('../models/post.model.js');
 
-async function sync(){
-    await User.sync();
-    await database.sync();
+async function sync() {
+    try {
+        await database.authenticate();
+
+        await database.sync();
+
+        console.log('Tables initialisées.');
+    } catch (error) {
+        console.error('Erreur pendant la synchronisation :', error);
+        process.exitCode = 1;
+    } finally {
+        await database.close();
+    }
 }
 
 sync();

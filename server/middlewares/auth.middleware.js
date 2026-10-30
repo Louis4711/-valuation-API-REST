@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { User } = require('./../models/user.model.js');
+const User = require('./../models/user.model.js');
 require('dotenv').config();
 
 exports.revokedTokens = new Set();
